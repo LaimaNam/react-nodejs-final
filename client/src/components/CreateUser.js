@@ -67,6 +67,7 @@ export default function CreateUser() {
         <TextField
           id="outlined-basic"
           label="email"
+          type="email"
           variant="outlined"
           value={user.email}
           onChange={(e) => setUser({ ...user, email: e.target.value })}
@@ -74,6 +75,7 @@ export default function CreateUser() {
         <TextField
           id="outlined-basic"
           label="password"
+          type="password"
           variant="outlined"
           value={user.password}
           onChange={(e) => setUser({ ...user, password: e.target.value })}
