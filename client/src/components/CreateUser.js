@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
+import { userContext } from '../App';
 
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -16,17 +17,22 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CreateUser() {
   const classes = useStyles();
-  const [user, setUser] = useState({
-    name: '',
-    age: 0,
-    email: '',
-    password: '',
-  });
+  // hooks
+  // -- local state
+  const [message, setMessage] = useState('');
+
+  //context data
+  const { setUser, user, usersList, setUsersList } = useContext(userContext);
 
   // custom functions
   const createUser = (e) => {
     e.preventDefault();
-    console.log(user);
+
+    if (!user.name || !user.age || !user.email || !user.password) {
+      setMessage('Please fill in all the fields');
+      return;
+    }
+
     axios.post('http://localhost:5000/api/users', user).then(() => {
       setUser({
         name: '',
@@ -34,7 +40,10 @@ export default function CreateUser() {
         email: '',
         password: '',
       });
+      setMessage('');
     });
+
+    setUsersList([...usersList, user]);
   };
 
   return (
@@ -73,6 +82,7 @@ export default function CreateUser() {
         <Button variant="contained" color="primary" onClick={createUser}>
           Create
         </Button>
+        <p>{message}</p>
       </form>
     </>
   );

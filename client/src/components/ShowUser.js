@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
+import { userContext } from '../App';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -11,6 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import CreateIcon from '@material-ui/icons/Create';
 
 const useStyles = makeStyles({
   table: {
@@ -21,22 +23,25 @@ const useStyles = makeStyles({
 export default function RenderStudents() {
   const classes = useStyles();
 
-  // local state
-  const [usersList, setUsersList] = useState([]);
+  // context data
+  const { usersList, setUsersList } = useContext(userContext);
 
   // side effects
   useEffect(() => {
     axios.get('http://localhost:5000/api/users').then((users) => {
       setUsersList(users.data);
     });
-  }, []);
+  }, [setUsersList]);
 
   // custom functions
   const deleteUser = (id) => {
     axios.delete(`http://localhost:5000/api/users/${id}`).then(() => {
-      //   window.location.reload(false);
+      const newList = usersList.filter((user) => user._id !== id);
+      setUsersList(newList);
     });
   };
+
+  const updateUser = (id) => {};
 
   return (
     <>
@@ -62,6 +67,14 @@ export default function RenderStudents() {
                 <TableCell align="right">{user.age}</TableCell>
                 <TableCell align="right">{user.email}</TableCell>
                 <TableCell align="right">{user.password}</TableCell>
+                <TableCell align="right">
+                  <IconButton
+                    aria-label="update"
+                    onClick={() => updateUser(user._id)}
+                  >
+                    <CreateIcon />
+                  </IconButton>
+                </TableCell>
                 <TableCell align="right">
                   <IconButton
                     aria-label="delete"
