@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { userContext } from '../App';
 
@@ -31,13 +31,9 @@ export default function EditUser() {
   //context data
   const { usersList, setUsersList } = useContext(userContext);
 
-  //refs
-  const nameInput = useRef();
-
   //   custom functions
   const handleUserChange = (e) => {
     setUserToUpdate({ ...userToUpdate, id: e.target.value });
-    // nameInput.current.value;
   };
 
   const editUser = (e) => {
@@ -76,7 +72,7 @@ export default function EditUser() {
       <h2>Redaguoti vartotoją:</h2>
 
       <form className={classes.root} noValidate autoComplete="off">
-        <select name="" id="" onChange={(e) => handleUserChange(e)}>
+        <select onChange={(e) => handleUserChange(e)}>
           <option>Pasirinkti vartotoją</option>
           {usersList.map((user) => (
             <option value={user._id} key={user._id}>
@@ -90,7 +86,6 @@ export default function EditUser() {
           label="name"
           variant="outlined"
           autoComplete="on"
-          ref={nameInput}
           value={userToUpdate.name}
           onChange={(e) =>
             setUserToUpdate({ ...userToUpdate, name: e.target.value })
@@ -130,7 +125,7 @@ export default function EditUser() {
         />
 
         <Button variant="contained" color="primary" onClick={editUser}>
-          Edit
+          Redaguoti
         </Button>
         <p>{message}</p>
       </form>

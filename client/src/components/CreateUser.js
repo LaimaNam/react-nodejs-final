@@ -48,7 +48,7 @@ export default function CreateUser() {
 
   return (
     <>
-      <h2>Sukurti vartotoją:</h2>
+      <h2>Pridėti vartotoją:</h2>
       <form className={classes.root} noValidate autoComplete="off">
         <TextField
           id="outlined-basic"
@@ -86,7 +86,7 @@ export default function CreateUser() {
         />
 
         <Button variant="contained" color="primary" onClick={createUser}>
-          Create
+          Pridėti
         </Button>
         <p>{message}</p>
       </form>
