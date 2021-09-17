@@ -1,5 +1,5 @@
-1. npm i (įsirašyti node modules)
-2. .env faile prie MONGODB_URI įkelti pateiktą duomenų bazės nuorodą.
+1. npm i (įsirašyti node modules tiek Client, tiek Server folderiuose)
+2. .env faile prie MONGODB_URI įkelti pateiktą duomenų bazės nuorodą
 
 Komandos projekto paleidimui:
 

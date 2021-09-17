@@ -70,10 +70,11 @@ export default function EditUser() {
 
   return (
     <>
-      <h2>Redaguoti pasirinktą vartotoją:</h2>
+      <h2>Redaguoti vartotoją:</h2>
 
       <form className={classes.root} noValidate autoComplete="off">
         <select name="" id="" onChange={(e) => handleUserChange(e)}>
+          <option>Pasirinkti vartotoją</option>
           {usersList.map((user) => (
             <option value={user._id} key={user._id}>
               {user.name}, {user.email}

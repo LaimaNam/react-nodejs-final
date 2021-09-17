@@ -29,7 +29,6 @@ export default function ShowUser() {
   useEffect(() => {
     axios.get('http://localhost:5000/api/users').then((users) => {
       setUsersList(users.data);
-      console.log(users.data);
     });
   }, [setUsersList]);
 
