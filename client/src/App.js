@@ -6,6 +6,7 @@ import useStyles from './styles';
 //components
 import CreateUser from './components/CreateUser';
 import ShowUser from './components/ShowUser';
+import EditUser from './components/EditUser';
 
 //creating context api
 export const userContext = createContext();
@@ -45,6 +46,14 @@ function App() {
                     color="inherit"
                   >
                     <ShowUser />
+                  </AppBar>
+
+                  <AppBar
+                    className={classes.appBar}
+                    position="static"
+                    color="inherit"
+                  >
+                    <EditUser />
                   </AppBar>
                 </Grid>
                 <Grid item xs={12} sm={4}>

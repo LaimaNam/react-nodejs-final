@@ -26,6 +26,7 @@ app.use(cors());
 app.use(express.json());
 
 //Routes
+//test route
 app.get('/', (req, res) => {
   res.send('API is running');
 });
@@ -56,6 +57,14 @@ app.post('/api/users', async (req, res) => {
 //UPDATE user
 app.put('/api/users/:id', async (req, res) => {
   const id = req.params.id;
+  const userToUpdate = req.body;
+
+  try {
+    await User.findByIdAndUpdate(id, userToUpdate);
+    res.send('Successfully Updated');
+  } catch (error) {
+    res.json({ message: error.message });
+  }
 });
 
 //DELETE user

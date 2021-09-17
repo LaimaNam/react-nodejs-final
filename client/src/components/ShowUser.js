@@ -12,7 +12,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import CreateIcon from '@material-ui/icons/Create';
 
 const useStyles = makeStyles({
   table: {
@@ -20,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function RenderStudents() {
+export default function ShowUser() {
   const classes = useStyles();
 
   // context data
@@ -30,6 +29,7 @@ export default function RenderStudents() {
   useEffect(() => {
     axios.get('http://localhost:5000/api/users').then((users) => {
       setUsersList(users.data);
+      console.log(users.data);
     });
   }, [setUsersList]);
 
@@ -40,8 +40,6 @@ export default function RenderStudents() {
       setUsersList(newList);
     });
   };
-
-  const updateUser = (id) => {};
 
   return (
     <>
@@ -54,27 +52,19 @@ export default function RenderStudents() {
               <TableCell align="right">Amžius</TableCell>
               <TableCell align="right">El.paštas</TableCell>
               <TableCell align="right">Slaptažodis</TableCell>
-              <TableCell align="right">Atnaujinti</TableCell>
               <TableCell align="right">Trinti</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {usersList.map((user, key) => (
-              <TableRow key={key}>
+            {usersList.map((user) => (
+              <TableRow key={user._id}>
                 <TableCell component="th" scope="row">
                   {user.name}
                 </TableCell>
                 <TableCell align="right">{user.age}</TableCell>
                 <TableCell align="right">{user.email}</TableCell>
                 <TableCell align="right">{user.password}</TableCell>
-                <TableCell align="right">
-                  <IconButton
-                    aria-label="update"
-                    onClick={() => updateUser(user._id)}
-                  >
-                    <CreateIcon />
-                  </IconButton>
-                </TableCell>
+
                 <TableCell align="right">
                   <IconButton
                     aria-label="delete"
