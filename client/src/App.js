@@ -29,7 +29,7 @@ function App() {
         <Container maxWidth="lg">
           <AppBar className={classes.AppBar} position="static" color="inherit">
             <Typography className={classes.heading} variant="h2" align="center">
-              Vartotojų admin sistema
+              Vartotojų administravimo sistema
             </Typography>
           </AppBar>
           <Grow in>

@@ -54,6 +54,7 @@ export default function CreateUser() {
           id="outlined-basic"
           label="name"
           variant="outlined"
+          autoComplete="on"
           value={user.name}
           onChange={(e) => setUser({ ...user, name: e.target.value })}
         />
@@ -61,6 +62,7 @@ export default function CreateUser() {
           id="outlined-basic"
           label="age"
           variant="outlined"
+          autoComplete="on"
           value={user.age}
           onChange={(e) => setUser({ ...user, age: e.target.value })}
         />
@@ -69,6 +71,7 @@ export default function CreateUser() {
           label="email"
           type="email"
           variant="outlined"
+          autoComplete="on"
           value={user.email}
           onChange={(e) => setUser({ ...user, email: e.target.value })}
         />
@@ -77,6 +80,7 @@ export default function CreateUser() {
           label="password"
           type="password"
           variant="outlined"
+          autoComplete="on"
           value={user.password}
           onChange={(e) => setUser({ ...user, password: e.target.value })}
         />

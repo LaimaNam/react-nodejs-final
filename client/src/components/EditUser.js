@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import axios from 'axios';
 import { userContext } from '../App';
 
@@ -31,10 +31,13 @@ export default function EditUser() {
   //context data
   const { usersList, setUsersList } = useContext(userContext);
 
-  //   custom functions
+  //refs
+  const nameInput = useRef();
 
+  //   custom functions
   const handleUserChange = (e) => {
     setUserToUpdate({ ...userToUpdate, id: e.target.value });
+    // nameInput.current.value;
   };
 
   const editUser = (e) => {
@@ -77,7 +80,7 @@ export default function EditUser() {
           <option>Pasirinkti vartotoją</option>
           {usersList.map((user) => (
             <option value={user._id} key={user._id}>
-              {user.name}, {user.email}
+              {user.name}, {user.email}, {user.age}, {user.password}
             </option>
           ))}
         </select>
@@ -86,6 +89,8 @@ export default function EditUser() {
           id="outlined-basic"
           label="name"
           variant="outlined"
+          autoComplete="on"
+          ref={nameInput}
           value={userToUpdate.name}
           onChange={(e) =>
             setUserToUpdate({ ...userToUpdate, name: e.target.value })
@@ -95,6 +100,7 @@ export default function EditUser() {
           id="outlined-basic"
           label="age"
           variant="outlined"
+          autoComplete="on"
           value={userToUpdate.age}
           onChange={(e) =>
             setUserToUpdate({ ...userToUpdate, age: e.target.value })
@@ -105,6 +111,7 @@ export default function EditUser() {
           label="email"
           type="email"
           variant="outlined"
+          autoComplete="on"
           value={userToUpdate.email}
           onChange={(e) =>
             setUserToUpdate({ ...userToUpdate, email: e.target.value })
@@ -115,6 +122,7 @@ export default function EditUser() {
           label="password"
           type="password"
           variant="outlined"
+          autoComplete="on"
           value={userToUpdate.password}
           onChange={(e) =>
             setUserToUpdate({ ...userToUpdate, password: e.target.value })
